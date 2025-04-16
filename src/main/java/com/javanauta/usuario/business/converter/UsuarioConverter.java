@@ -99,4 +99,16 @@ public class UsuarioConverter {
                 .build();
     }
 
+    //Metodo que mescla dados novos com dados ja existentes no banco de dados
+    //Averigua se foi passado um novo dado, se nao foi, mantem o dado existente no banco de dados
+    public Usuario updateUsuario(UsuarioDTO usuarioDTO, Usuario entity){
+        return Usuario.builder()
+                .id(entity.getId())
+                .nome(usuarioDTO.getNome() != null ? usuarioDTO.getNome() : entity.getNome())
+                .email(usuarioDTO.getEmail() != null ? usuarioDTO.getEmail() : entity.getEmail())
+                .senha(usuarioDTO.getSenha() != null ? usuarioDTO.getSenha() : entity.getSenha())
+                .enderecos(entity.getEnderecos())
+                .telefones(entity.getTelefones())
+                .build();
+    }
 }
