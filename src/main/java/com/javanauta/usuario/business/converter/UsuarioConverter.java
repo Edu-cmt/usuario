@@ -133,4 +133,25 @@ public class UsuarioConverter {
                 .ddd(telefoneDTO.getDdd() != null ? telefoneDTO.getDdd() : telefoneEntity.getDdd())
                 .build();
     }
+
+    //Metodos para cadastrar um novo endereço/telefone para um usuario já cadastrado.
+    public Endereco paraNovoEndereco(EnderecoDTO enderecoDTO, Long usuarioId){
+        return Endereco.builder()
+                .rua(enderecoDTO.getRua())
+                .numero(enderecoDTO.getNumero())
+                .complemento(enderecoDTO.getComplemento())
+                .cidade(enderecoDTO.getCidade())
+                .estado(enderecoDTO.getEstado())
+                .cep(enderecoDTO.getCep())
+                .usuarioId(usuarioId)
+                .build();
+    }
+
+    public Telefone paraNovoTelefone(TelefoneDTO telefoneDTO, Long usuarioId){
+        return Telefone.builder()
+                .numero(telefoneDTO.getNumero())
+                .ddd(telefoneDTO.getDdd())
+                .usuarioId(usuarioId)
+                .build();
+    }
 }
